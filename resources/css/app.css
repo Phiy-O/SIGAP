@@ -1,0 +1,284 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Glass Effect for Navbar - High Priority */
+nav.navbar-glass,
+.navbar-glass {
+    background: rgba(255, 255, 255, 0.25) !important;
+    backdrop-filter: blur(30px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(30px) saturate(180%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 0 0 20px 20px !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    overflow: hidden;
+}
+
+/* Dots Pattern Overlay for Navbar */
+nav.navbar-glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 2px 2px, rgba(8, 36, 83, 0.1) 1px, transparent 0);
+    background-size: 24px 24px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+nav.navbar-glass > * {
+    position: relative;
+    z-index: 1;
+}
+
+.navbar-glass-mobile {
+    background: rgba(255, 255, 255, 0.5) !important;
+    backdrop-filter: blur(24px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.18) !important;
+}
+
+/* Force glass effect - remove any white background */
+nav[class*="navbar-glass"],
+nav.navbar-glass {
+    background-color: rgba(255, 255, 255, 0.5) !important;
+    background-image: none !important;
+}
+
+/* Ensure no solid white override */
+body nav.navbar-glass {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(30px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(30px) saturate(180%) !important;
+}
+
+/* Force fixed position */
+nav.navbar-glass {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+}
+
+@layer base {
+    * {
+        font-family: 'Nunito', sans-serif;
+    }
+    
+    body {
+        @apply bg-white text-gray-900 antialiased;
+        font-family: 'Nunito', sans-serif;
+    }
+}
+
+@layer components {
+    /* Button Styles */
+    .btn-primary {
+        @apply bg-sigap-orange hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5;
+    }
+    
+    .btn-secondary {
+        @apply bg-sigap-blue hover:bg-blue-900 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5;
+    }
+    
+    .btn-outline {
+        @apply border-2 border-sigap-blue text-sigap-blue hover:bg-sigap-blue hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200;
+    }
+    
+    /* Card Styles */
+    .card {
+        @apply bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200;
+    }
+    
+    /* Input Styles */
+    .input-field {
+        @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sigap-orange focus:border-transparent transition-all duration-200;
+    }
+    
+    /* Badge Styles */
+    .badge {
+        @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+    }
+    
+    .badge-primary {
+        @apply bg-sigap-orange/10 text-sigap-orange;
+    }
+    
+    .badge-secondary {
+        @apply bg-sigap-blue/10 text-sigap-blue;
+    }
+    
+    /* Gradient Background */
+    .gradient-bg {
+        @apply bg-gradient-to-br from-sigap-blue via-blue-800 to-sigap-blue;
+    }
+    
+    /* Hero Section */
+    .hero-section {
+        @apply relative overflow-hidden;
+    }
+    
+        /* Navigation */
+        .nav-link {
+            @apply text-gray-700 hover:text-sigap-orange font-medium transition-colors duration-200;
+        }
+        
+        .nav-link-active {
+            @apply text-sigap-orange font-semibold;
+        }
+        
+        .nav-link-outline {
+            @apply border-2 border-sigap-blue text-sigap-blue hover:bg-sigap-orange hover:text-white hover:border-sigap-orange font-semibold py-1 px-5 rounded-full transition-all duration-200;
+        }
+}
+
+/* Custom Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.delay-200 {
+    animation-delay: 200ms;
+}
+
+@keyframes bounce-slow {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.animate-bounce-slow {
+    animation: bounce-slow 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.animate-float {
+    animation: float 4s ease-in-out infinite;
+}
+
+.delay-300 {
+    animation-delay: 300ms;
+}
+
+@keyframes dots-move {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(30px, 30px);
+    }
+}
+
+/* Marquee Scroller */
+.marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.marquee-content {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    animation: marquee-scroll 30s linear infinite;
+}
+
+.marquee-item {
+    display: inline-block;
+    color: #dbeafe;
+    font-size: 1.5rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.marquee-separator {
+    color: #93c5fd;
+    font-size: 1.5rem;
+    opacity: 0.6;
+}
+
+@keyframes marquee-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.fade-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Infinite Carousel */
+.testimonial-carousel {
+    animation: scroll-testimonial 30s linear infinite;
+}
+
+.partner-carousel {
+    animation: scroll-partner 20s linear infinite;
+}
+
+@keyframes scroll-testimonial {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes scroll-partner {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.testimonial-carousel:hover,
+.partner-carousel:hover {
+    animation-play-state: paused;
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
